@@ -1,6 +1,8 @@
-# Welcome to your Lovable project
+# TariffTrack — Lovable project by A.B.
 
 ## Project info
+
+https://github.com/Fonb/tariff-track-insights/blob/main/TariffTrack%20Design.png?raw=true
 
 **URL**: https://lovable.dev/projects/6ea9dfbe-f3f8-426d-b254-c591af6c5323
 
