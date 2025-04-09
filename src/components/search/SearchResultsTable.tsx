@@ -76,7 +76,7 @@ export const SearchResultsTable = ({ results }: SearchResultsTableProps) => {
                 <td className="px-4 py-3">
                   <Link
                     to={`/${result.type}/${result.code || result.id}`}
-                    className="font-medium hover:text-accent flex items-center gap-2"
+                    className="font-medium hover:text-accent no-underline flex items-center gap-2"
                   >
                     {result.flag && <span>{result.flag}</span>}
                     {result.name}

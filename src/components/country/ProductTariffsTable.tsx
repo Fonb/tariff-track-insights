@@ -80,7 +80,7 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                   <td>
                     <Link 
                       to={`/country/${countryCode}/product/${product.id}`}
-                      className="font-medium hover:text-accent"
+                      className="font-medium hover:text-accent no-underline"
                     >
                       {product.name}
                     </Link>

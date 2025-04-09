@@ -28,7 +28,7 @@ export const CountryTariffCard = ({ country }: CountryTariffCardProps) => {
   };
 
   return (
-    <Link to={`/country/${code}`}>
+    <Link to={`/country/${code}`} className="no-underline">
       <Card className="h-full hover:shadow-md transition-all duration-200">
         <CardContent className="p-4">
           <div className="flex items-center gap-3 mb-3">
