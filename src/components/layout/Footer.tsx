@@ -1,0 +1,75 @@
+
+import { Link } from "react-router-dom";
+
+export const Footer = () => {
+  return (
+    <footer className="mt-auto border-t border-border py-6">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-lg font-bold mb-4">TariffTrack</h3>
+            <p className="text-sm text-muted-foreground">
+              Real-time tariff data and economic impact metrics for global trade professionals.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-sm hover:text-accent transition-colors">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/countries" className="text-sm hover:text-accent transition-colors">
+                  Countries
+                </Link>
+              </li>
+              <li>
+                <Link to="/products" className="text-sm hover:text-accent transition-colors">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing" className="text-sm hover:text-accent transition-colors">
+                  Pricing
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium mb-4">Subscribe for Updates</h4>
+            <p className="text-sm text-muted-foreground mb-2">
+              Get notifications on tariff changes and economic impacts.
+            </p>
+            <Link 
+              to="/pricing" 
+              className="text-sm text-accent hover:underline"
+            >
+              See pricing plans →
+            </Link>
+          </div>
+        </div>
+        
+        <div className="mt-8 pt-4 border-t border-border flex flex-col md:flex-row justify-between items-center">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} TariffTrack. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <Link to="/terms" className="text-xs text-muted-foreground hover:text-foreground">
+              Terms
+            </Link>
+            <Link to="/privacy" className="text-xs text-muted-foreground hover:text-foreground">
+              Privacy
+            </Link>
+            <Link to="/contact" className="text-xs text-muted-foreground hover:text-foreground">
+              Contact
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
