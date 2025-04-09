@@ -22,7 +22,7 @@ export const Header = () => {
       <div className="container py-4 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold">Tariff<span className="text-accent">Track</span></span>
+            <span className="text-2xl font-bold">Tariff<span className="text-gray-500">Track</span></span>
           </Link>
           <div className="hidden md:flex ml-8 space-x-4">
             <Link to="/" className="text-sm font-medium hover:text-accent transition-colors">

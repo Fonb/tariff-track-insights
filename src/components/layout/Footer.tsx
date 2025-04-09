@@ -54,9 +54,10 @@ export const Footer = () => {
         </div>
         
         <div className="mt-8 pt-4 border-t border-border flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} TariffTrack. All rights reserved.
-          </p>
+          <div className="text-xs text-muted-foreground">
+            <p>© {new Date().getFullYear()} TariffTrack. All rights reserved.</p>
+            <p className="mt-1">Project by <a href="https://alfonso.work/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Alfonso Barrionuevo</a></p>
+          </div>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link to="/terms" className="text-xs text-muted-foreground hover:text-foreground">
               Terms
