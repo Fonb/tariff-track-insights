@@ -25,13 +25,13 @@ export const Header = () => {
             <span className="text-2xl font-bold">Tariff<span className="text-gray-500">Track</span></span>
           </Link>
           <div className="hidden md:flex ml-8 space-x-4">
-            <Link to="/" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link to="/" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
               Dashboard
             </Link>
-            <Link to="/countries" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link to="/countries" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
               Countries
             </Link>
-            <Link to="/products" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link to="/products" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
               Products
             </Link>
           </div>
