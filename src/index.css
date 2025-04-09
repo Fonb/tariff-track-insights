@@ -64,8 +64,12 @@
   }
 
   /* Remove underline for links in cards */
-  .no-underline, .no-underline:hover {
-    @apply no-underline;
+  .no-underline {
+    text-decoration: none;
+  }
+  
+  .no-underline:hover {
+    text-decoration: none;
   }
 }
 
