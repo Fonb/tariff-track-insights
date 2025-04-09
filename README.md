@@ -2,7 +2,7 @@
 
 ## Project info
 
-https://github.com/Fonb/tariff-track-insights/blob/main/TariffTrack%20Design.png?raw=true
+<img alt="TariffTrack Design.png" src="https://github.com/Fonb/tariff-track-insights/blob/main/TariffTrack%20Design.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
 
 **URL**: https://lovable.dev/projects/6ea9dfbe-f3f8-426d-b254-c591af6c5323
 
