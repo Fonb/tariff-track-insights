@@ -1,7 +1,5 @@
 # TariffTrack — Lovable project by A.B.
 
-## Project info
-
 <img alt="TariffTrack Design.png" src="https://github.com/Fonb/tariff-track-insights/blob/main/TariffTrack%20Design.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
 
 ## How can I edit this code?
@@ -59,15 +57,3 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/6ea9dfbe-f3f8-426d-b254-c591af6c5323) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
