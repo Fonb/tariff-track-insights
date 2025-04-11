@@ -2,6 +2,7 @@
 import { ArrowUpDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 type SearchResult = {
   id: string;
@@ -19,7 +20,13 @@ type SearchResultsTableProps = {
   results: SearchResult[];
 };
 
+type SortField = "name" | "tariffRate" | "changePercent" | "economicImpact";
+type SortDirection = "asc" | "desc";
+
 export const SearchResultsTable = ({ results }: SearchResultsTableProps) => {
+  const [sortField, setSortField] = useState<SortField>("name");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -27,6 +34,40 @@ export const SearchResultsTable = ({ results }: SearchResultsTableProps) => {
       notation: 'compact',
       maximumFractionDigits: 1,
     }).format(value);
+  };
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const sortedResults = [...results].sort((a, b) => {
+    if (sortField === "name") {
+      return sortDirection === "asc" 
+        ? a.name.localeCompare(b.name) 
+        : b.name.localeCompare(a.name);
+    } else {
+      const aValue = a[sortField];
+      const bValue = b[sortField];
+      
+      if (sortDirection === "asc") {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    }
+  });
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) {
+      return <ArrowUpDown size={14} className="opacity-50" />;
+    }
+    
+    return <ArrowUpDown size={14} className="text-accent" />;
   };
 
   return (
@@ -44,34 +85,46 @@ export const SearchResultsTable = ({ results }: SearchResultsTableProps) => {
           <thead>
             <tr className="bg-muted/50">
               <th className="px-4 py-3 text-left text-sm font-medium">
-                <div className="flex items-center gap-1">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer" 
+                  onClick={() => handleSort("name")}
+                >
                   <span>Name</span>
-                  <ArrowUpDown size={14} />
+                  {getSortIcon("name")}
                 </div>
               </th>
               <th className="px-4 py-3 text-left text-sm font-medium">Type</th>
               <th className="px-4 py-3 text-left text-sm font-medium">
-                <div className="flex items-center gap-1">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer" 
+                  onClick={() => handleSort("tariffRate")}
+                >
                   <span>Tariff Rate</span>
-                  <ArrowUpDown size={14} />
+                  {getSortIcon("tariffRate")}
                 </div>
               </th>
               <th className="px-4 py-3 text-left text-sm font-medium">
-                <div className="flex items-center gap-1">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer" 
+                  onClick={() => handleSort("changePercent")}
+                >
                   <span>Change</span>
-                  <ArrowUpDown size={14} />
+                  {getSortIcon("changePercent")}
                 </div>
               </th>
               <th className="px-4 py-3 text-left text-sm font-medium">
-                <div className="flex items-center gap-1">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer" 
+                  onClick={() => handleSort("economicImpact")}
+                >
                   <span>Economic Impact</span>
-                  <ArrowUpDown size={14} />
+                  {getSortIcon("economicImpact")}
                 </div>
               </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {results.map((result) => (
+            {sortedResults.map((result) => (
               <tr key={result.id} className="hover:bg-muted/20">
                 <td className="px-4 py-3">
                   <Link

@@ -118,6 +118,9 @@ const mockCountries = [
   },
 ];
 
+// Sort countries by economic loss (highest to lowest)
+const sortedCountries = [...mockCountries].sort((a, b) => b.economicLoss - a.economicLoss);
+
 const Index = () => {
   const [lastUpdated] = useState("April 9, 2025 09:30 GMT");
   
@@ -141,7 +144,7 @@ const Index = () => {
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Country Tariff Overview</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {mockCountries.map((country) => (
+            {sortedCountries.map((country) => (
               <CountryTariffCard key={country.id} country={country} />
             ))}
           </div>

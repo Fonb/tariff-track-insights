@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { CountryDetailHeader } from "@/components/country/CountryDetailHeader";
@@ -120,14 +119,118 @@ const mockCountryData = {
       },
     ],
   },
+  at: {
+    name: "Austria",
+    code: "at",
+    flag: "🇦🇹",
+    averageTariff: 2.8,
+    economicLoss: 45600000000,
+    tariffHistory: [
+      { date: "2024 Q1", tariff: 3.1 },
+      { date: "2024 Q2", tariff: 3.0 },
+      { date: "2024 Q3", tariff: 2.9 },
+      { date: "2024 Q4", tariff: 2.8 },
+      { date: "2025 Q1", tariff: 2.8 },
+    ],
+    products: [
+      {
+        id: "electronics",
+        name: "Electronics",
+        category: "Consumer Goods",
+        tariffRate: 2.5,
+        changePercent: -0.2,
+        economicImpact: 12300000000,
+      },
+      {
+        id: "agriculture",
+        name: "Agricultural Products",
+        category: "Food & Beverages",
+        tariffRate: 5.2,
+        changePercent: -0.3,
+        economicImpact: 14800000000,
+      },
+    ],
+  },
+  de: {
+    name: "Germany",
+    code: "de",
+    flag: "🇩🇪",
+    averageTariff: 2.4,
+    economicLoss: 425000000000,
+    tariffHistory: [
+      { date: "2024 Q1", tariff: 2.6 },
+      { date: "2024 Q2", tariff: 2.5 },
+      { date: "2024 Q3", tariff: 2.5 },
+      { date: "2024 Q4", tariff: 2.4 },
+      { date: "2025 Q1", tariff: 2.4 },
+    ],
+    products: [
+      {
+        id: "automotive",
+        name: "Automotive",
+        category: "Transportation",
+        tariffRate: 2.2,
+        changePercent: -0.1,
+        economicImpact: 187000000000,
+      },
+      {
+        id: "electronics",
+        name: "Electronics",
+        category: "Consumer Goods",
+        tariffRate: 2.3,
+        changePercent: -0.2,
+        economicImpact: 98000000000,
+      },
+    ],
+  },
+  fr: {
+    name: "France",
+    code: "fr",
+    flag: "🇫🇷",
+    averageTariff: 2.6,
+    economicLoss: 298000000000,
+    tariffHistory: [
+      { date: "2024 Q1", tariff: 2.8 },
+      { date: "2024 Q2", tariff: 2.7 },
+      { date: "2024 Q3", tariff: 2.6 },
+      { date: "2024 Q4", tariff: 2.6 },
+      { date: "2025 Q1", tariff: 2.6 },
+    ],
+    products: [
+      {
+        id: "agriculture",
+        name: "Agricultural Products",
+        category: "Food & Beverages",
+        tariffRate: 4.2,
+        changePercent: -0.1,
+        economicImpact: 87000000000,
+      },
+      {
+        id: "luxury",
+        name: "Luxury Goods",
+        category: "Consumer Goods",
+        tariffRate: 3.1,
+        changePercent: 0.2,
+        economicImpact: 67000000000,
+      },
+    ],
+  },
 };
 
 const CountryDetail = () => {
   const { countryCode } = useParams<{ countryCode: string }>();
-  const [country, setCountry] = useState(() => {
-    // Default to US data if country code not found or invalid
-    return mockCountryData[countryCode as keyof typeof mockCountryData] || mockCountryData.us;
-  });
+  const [country, setCountry] = useState<any>(null);
+  
+  useEffect(() => {
+    // Set country based on URL param, fallback to US only if code is invalid
+    if (countryCode && mockCountryData[countryCode as keyof typeof mockCountryData]) {
+      setCountry(mockCountryData[countryCode as keyof typeof mockCountryData]);
+    } else {
+      setCountry(mockCountryData.us);
+    }
+  }, [countryCode]);
+  
+  if (!country) return <div className="container py-6">Loading...</div>;
 
   return (
     <Layout>

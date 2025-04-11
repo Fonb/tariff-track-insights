@@ -1,7 +1,8 @@
 
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowUpDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
 type Product = {
@@ -18,7 +19,47 @@ type ProductTariffsTableProps = {
   countryCode: string;
 };
 
+type SortField = "name" | "tariffRate" | "changePercent" | "economicImpact";
+type SortDirection = "asc" | "desc";
+
 export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTableProps) => {
+  const [sortField, setSortField] = useState<SortField>("name");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const sortedProducts = [...products].sort((a, b) => {
+    if (sortField === "name") {
+      return sortDirection === "asc" 
+        ? a.name.localeCompare(b.name) 
+        : b.name.localeCompare(a.name);
+    } else {
+      const aValue = a[sortField];
+      const bValue = b[sortField];
+      
+      if (sortDirection === "asc") {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    }
+  });
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) {
+      return <ArrowUpDown size={14} className="opacity-50" />;
+    }
+    
+    return <ArrowUpDown size={14} className="text-accent" />;
+  };
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -43,58 +84,62 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
             <thead>
               <tr>
                 <th>
-                  <div className="flex items-center gap-1">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer" 
+                    onClick={() => handleSort("name")}
+                  >
                     <span>Product</span>
-                    <ArrowUpDown size={14} />
+                    {getSortIcon("name")}
                   </div>
                 </th>
+                <th>Category</th>
                 <th>
-                  <div className="flex items-center gap-1">
-                    <span>Category</span>
-                    <ArrowUpDown size={14} />
-                  </div>
-                </th>
-                <th>
-                  <div className="flex items-center gap-1">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer" 
+                    onClick={() => handleSort("tariffRate")}
+                  >
                     <span>Tariff Rate</span>
-                    <ArrowUpDown size={14} />
+                    {getSortIcon("tariffRate")}
                   </div>
                 </th>
                 <th>
-                  <div className="flex items-center gap-1">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer" 
+                    onClick={() => handleSort("changePercent")}
+                  >
                     <span>Change</span>
-                    <ArrowUpDown size={14} />
+                    {getSortIcon("changePercent")}
                   </div>
                 </th>
                 <th>
-                  <div className="flex items-center gap-1">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer" 
+                    onClick={() => handleSort("economicImpact")}
+                  >
                     <span>Economic Impact</span>
-                    <ArrowUpDown size={14} />
+                    {getSortIcon("economicImpact")}
                   </div>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {sortedProducts.map((product) => (
                 <tr key={product.id}>
                   <td>
-                    <Link 
-                      to={`/country/${countryCode}/product/${product.id}`}
-                      className="font-medium hover:text-accent no-underline"
-                    >
+                    <Link to={`/product/${product.id}`} className="font-medium hover:text-accent no-underline">
                       {product.name}
                     </Link>
                   </td>
                   <td>{product.category}</td>
                   <td className="font-medium">{product.tariffRate}%</td>
                   <td>
-                    <span 
+                    <span
                       className={
-                        product.changePercent > 0 
-                          ? "text-red-500" 
-                          : product.changePercent < 0 
-                            ? "text-green-500" 
-                            : ""
+                        product.changePercent > 0
+                          ? "text-red-500"
+                          : product.changePercent < 0
+                          ? "text-green-500"
+                          : ""
                       }
                     >
                       {product.changePercent > 0 ? "+" : ""}

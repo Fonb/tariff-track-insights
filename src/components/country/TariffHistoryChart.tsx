@@ -9,6 +9,7 @@ import {
   ResponsiveContainer 
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
 
 type TariffHistoryChartProps = {
   data: Array<{
@@ -18,6 +19,30 @@ type TariffHistoryChartProps = {
 };
 
 export const TariffHistoryChart = ({ data }: TariffHistoryChartProps) => {
+  const [trend, setTrend] = useState<'up' | 'down' | 'neutral'>('neutral');
+  
+  useEffect(() => {
+    if (data.length < 2) return;
+    
+    const firstValue = data[0].tariff;
+    const lastValue = data[data.length - 1].tariff;
+    
+    if (lastValue > firstValue) {
+      setTrend('up');
+    } else if (lastValue < firstValue) {
+      setTrend('down');
+    } else {
+      setTrend('neutral');
+    }
+  }, [data]);
+  
+  // Determine color based on trend (red for increasing tariffs, green for decreasing)
+  const getChartColor = () => {
+    if (trend === 'up') return "#ea384c"; // Red for increasing (negative)
+    if (trend === 'down') return "#22c55e"; // Green for decreasing (positive)
+    return "#FF6B00"; // Orange for neutral
+  };
+  
   return (
     <Card className="mb-6">
       <CardHeader className="pb-2">
@@ -56,8 +81,8 @@ export const TariffHistoryChart = ({ data }: TariffHistoryChartProps) => {
               <Area 
                 type="monotone" 
                 dataKey="tariff" 
-                stroke="#FF6B00" 
-                fill="rgba(255, 107, 0, 0.1)" 
+                stroke={getChartColor()} 
+                fill={`${getChartColor()}1a`} 
                 strokeWidth={2}
               />
             </AreaChart>
