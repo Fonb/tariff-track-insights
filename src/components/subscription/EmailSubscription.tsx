@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 const emailSchema = z.string().email("Please enter a valid email address");
 
@@ -21,6 +21,18 @@ export const EmailSubscription = () => {
       
       // Validate email
       emailSchema.parse(email);
+      
+      // Check if Supabase is configured
+      if (!isSupabaseConfigured()) {
+        // Mock successful subscription in demo mode
+        console.log('Mock subscription for:', email);
+        toast({
+          title: "Demo Mode: Subscription successful",
+          description: "This is a demo. In production, your email would be saved to the database.",
+        });
+        setEmail('');
+        return;
+      }
       
       // Submit to Supabase
       const { error } = await supabase
