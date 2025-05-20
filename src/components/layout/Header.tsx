@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,6 +54,7 @@ export const Header = () => {
               <Search size={18} />
             </button>
           </form>
+          <ThemeToggle />
           <Button variant="outline" size="sm" className="whitespace-nowrap">
             Sign In
           </Button>
