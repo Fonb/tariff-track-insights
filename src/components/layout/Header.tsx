@@ -23,16 +23,18 @@ export const Header = () => {
       <div className="container py-4 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold">Tariff<span className="text-gray-500">Track</span></span>
+            <span className="text-2xl font-bold">
+              Tariff<span className="text-primary dark:text-white">Track</span>
+            </span>
           </Link>
           <div className="hidden md:flex ml-8 space-x-4">
-            <Link to="/" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
+            <Link to="/" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
               Dashboard
             </Link>
-            <Link to="/countries" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
+            <Link to="/countries" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
               Countries
             </Link>
-            <Link to="/products" className="text-sm font-medium hover:text-primary hover:underline transition-colors">
+            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
               Products
             </Link>
           </div>
@@ -43,7 +45,7 @@ export const Header = () => {
             <Input
               type="text"
               placeholder="Search country or product..."
-              className="pr-8"
+              className="pr-8 bg-background text-foreground border-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

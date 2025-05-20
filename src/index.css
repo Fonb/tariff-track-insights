@@ -49,40 +49,40 @@
 
   .dark {
     --background: 0 0% 10%;
-    --foreground: 0 0% 95%;
+    --foreground: 0 0% 98%;
 
     --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --card-foreground: 0 0% 98%;
 
     --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 95%;
+    --primary: 0 0% 98%;
     --primary-foreground: 0 0% 10%;
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary-foreground: 0 0% 98%;
 
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted-foreground: 0 0% 75%;
 
     --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 95%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
     --ring: 0 0% 80%;
 
     --sidebar-background: 0 0% 12%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 95%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
     --sidebar-primary-foreground: 0 0% 12%;
     --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 25%;
     --sidebar-ring: 0 0% 80%;
   }
 
@@ -95,11 +95,11 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-primary;
+    @apply font-bold text-foreground dark:text-white;
   }
   
   a {
-    @apply text-primary hover:underline;
+    @apply text-foreground dark:text-gray-100 hover:underline;
   }
 
   /* Remove underline for links in cards */
@@ -114,15 +114,15 @@
 
 @layer components {
   .data-card {
-    @apply bg-white rounded-lg p-4 shadow-sm border border-border hover:shadow-md transition-shadow duration-200 dark:bg-card;
+    @apply bg-white rounded-lg p-4 shadow-sm border border-border hover:shadow-md transition-shadow duration-200 dark:bg-card dark:border-border;
   }
   
   .stat-value {
-    @apply text-2xl font-bold;
+    @apply text-2xl font-bold dark:text-white;
   }
   
   .stat-label {
-    @apply text-sm text-muted-foreground;
+    @apply text-sm text-muted-foreground dark:text-gray-300;
   }
 
   .data-table {
@@ -130,10 +130,10 @@
   }
 
   .data-table th {
-    @apply py-2 px-4 text-left font-medium text-sm bg-secondary;
+    @apply py-2 px-4 text-left font-medium text-sm bg-secondary dark:bg-secondary dark:text-white;
   }
 
   .data-table td {
-    @apply py-2 px-4 border-t border-border;
+    @apply py-2 px-4 border-t border-border dark:text-gray-100;
   }
 }
