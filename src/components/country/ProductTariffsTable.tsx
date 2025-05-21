@@ -83,7 +83,7 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
           <table className="data-table">
             <thead>
               <tr>
-                <th>
+                <th className="dark:bg-accent/20 dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("name")}
@@ -92,8 +92,8 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     {getSortIcon("name")}
                   </div>
                 </th>
-                <th>Category</th>
-                <th>
+                <th className="dark:bg-accent/20 dark:text-white">Category</th>
+                <th className="dark:bg-accent/20 dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("tariffRate")}
@@ -102,7 +102,7 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     {getSortIcon("tariffRate")}
                   </div>
                 </th>
-                <th>
+                <th className="dark:bg-accent/20 dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("changePercent")}
@@ -111,7 +111,7 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     {getSortIcon("changePercent")}
                   </div>
                 </th>
-                <th>
+                <th className="dark:bg-accent/20 dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("economicImpact")}
@@ -124,29 +124,29 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
             </thead>
             <tbody>
               {sortedProducts.map((product) => (
-                <tr key={product.id}>
+                <tr key={product.id} className="dark:hover:bg-accent/10">
                   <td>
-                    <Link to={`/product/${product.id}`} className="font-medium hover:text-accent no-underline">
+                    <Link to={`/product/${product.id}`} className="font-medium hover:text-accent dark:text-gray-100 dark:hover:text-white no-underline">
                       {product.name}
                     </Link>
                   </td>
-                  <td>{product.category}</td>
-                  <td className="font-medium">{product.tariffRate}%</td>
+                  <td className="dark:text-gray-200">{product.category}</td>
+                  <td className="font-medium dark:text-white">{product.tariffRate}%</td>
                   <td>
                     <span
                       className={
                         product.changePercent > 0
-                          ? "text-red-500"
+                          ? "text-red-500 dark:text-red-400"
                           : product.changePercent < 0
-                          ? "text-green-500"
-                          : ""
+                          ? "text-green-500 dark:text-green-400"
+                          : "dark:text-gray-200"
                       }
                     >
                       {product.changePercent > 0 ? "+" : ""}
                       {product.changePercent}%
                     </span>
                   </td>
-                  <td>{formatCurrency(product.economicImpact)}</td>
+                  <td className="dark:text-gray-200">{formatCurrency(product.economicImpact)}</td>
                 </tr>
               ))}
             </tbody>
