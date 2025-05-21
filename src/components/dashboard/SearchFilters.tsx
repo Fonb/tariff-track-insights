@@ -26,7 +26,7 @@ export const SearchFilters = () => {
   };
   
   return (
-    <Card className="mb-6 bg-secondary border-border">
+    <Card className="mb-6 bg-secondary dark:bg-card border-border">
       <CardContent className="p-4 md:p-6">
         <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4 items-end">
           <div className="flex-1">
