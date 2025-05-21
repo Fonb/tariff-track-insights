@@ -28,13 +28,13 @@ export const Header = () => {
             </span>
           </Link>
           <div className="hidden md:flex ml-8 space-x-4">
-            <Link to="/" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
+            <Link to="/" className="text-sm font-medium text-foreground hover:text-primary dark:hover:text-white dark:hover:bg-accent/30 px-2 py-1 rounded-md transition-colors">
               Dashboard
             </Link>
-            <Link to="/countries" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
+            <Link to="/countries" className="text-sm font-medium text-foreground hover:text-primary dark:hover:text-white dark:hover:bg-accent/30 px-2 py-1 rounded-md transition-colors">
               Countries
             </Link>
-            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary hover:underline transition-colors">
+            <Link to="/products" className="text-sm font-medium text-foreground hover:text-primary dark:hover:text-white dark:hover:bg-accent/30 px-2 py-1 rounded-md transition-colors">
               Products
             </Link>
           </div>
