@@ -4,6 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowUpDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 
 type Product = {
   id: string;
@@ -80,10 +88,10 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th className="dark:bg-accent/20 dark:text-white">
+          <Table>
+            <TableHeader className="bg-secondary dark:bg-accent/30">
+              <TableRow>
+                <TableHead className="font-semibold text-foreground dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("name")}
@@ -91,9 +99,9 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     <span>Product</span>
                     {getSortIcon("name")}
                   </div>
-                </th>
-                <th className="dark:bg-accent/20 dark:text-white">Category</th>
-                <th className="dark:bg-accent/20 dark:text-white">
+                </TableHead>
+                <TableHead className="font-semibold text-foreground dark:text-white">Category</TableHead>
+                <TableHead className="font-semibold text-foreground dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("tariffRate")}
@@ -101,8 +109,8 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     <span>Tariff Rate</span>
                     {getSortIcon("tariffRate")}
                   </div>
-                </th>
-                <th className="dark:bg-accent/20 dark:text-white">
+                </TableHead>
+                <TableHead className="font-semibold text-foreground dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("changePercent")}
@@ -110,8 +118,8 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     <span>Change</span>
                     {getSortIcon("changePercent")}
                   </div>
-                </th>
-                <th className="dark:bg-accent/20 dark:text-white">
+                </TableHead>
+                <TableHead className="font-semibold text-foreground dark:text-white">
                   <div 
                     className="flex items-center gap-1 cursor-pointer" 
                     onClick={() => handleSort("economicImpact")}
@@ -119,20 +127,20 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                     <span>Economic Impact</span>
                     {getSortIcon("economicImpact")}
                   </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {sortedProducts.map((product) => (
-                <tr key={product.id} className="dark:hover:bg-accent/10">
-                  <td>
+                <TableRow key={product.id} className="hover:bg-secondary/50 dark:hover:bg-accent/10">
+                  <TableCell>
                     <Link to={`/product/${product.id}`} className="font-medium hover:text-accent dark:text-gray-100 dark:hover:text-white no-underline">
                       {product.name}
                     </Link>
-                  </td>
-                  <td className="dark:text-gray-200">{product.category}</td>
-                  <td className="font-medium dark:text-white">{product.tariffRate}%</td>
-                  <td>
+                  </TableCell>
+                  <TableCell className="dark:text-gray-200">{product.category}</TableCell>
+                  <TableCell className="font-medium dark:text-white">{product.tariffRate}%</TableCell>
+                  <TableCell>
                     <span
                       className={
                         product.changePercent > 0
@@ -145,12 +153,12 @@ export const ProductTariffsTable = ({ products, countryCode }: ProductTariffsTab
                       {product.changePercent > 0 ? "+" : ""}
                       {product.changePercent}%
                     </span>
-                  </td>
-                  <td className="dark:text-gray-200">{formatCurrency(product.economicImpact)}</td>
-                </tr>
+                  </TableCell>
+                  <TableCell className="dark:text-gray-200">{formatCurrency(product.economicImpact)}</TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </CardContent>
     </Card>
