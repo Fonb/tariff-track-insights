@@ -1,6 +1,6 @@
-# TariffTrack — Lovable project by A.B.
-
 <img alt="TariffTrack Design.png" src="https://github.com/Fonb/tariff-track-insights/blob/main/TariffTrack%20Design.png?raw=true" data-hpc="true" class="Box-sc-g0xbh4-0 fzFXnm">
+
+# TariffTrack — Lovable project by A.B.
 
 ## How can I edit this code?
 
